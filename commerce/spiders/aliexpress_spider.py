@@ -2,7 +2,7 @@ import scrapy
 
 from scrapy.contrib.spiders import Rule, CrawlSpider
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-from tutorial.items import AliexpressItem
+from commerce.items import AliexpressItem
 
 
 class aliexpressSpider(CrawlSpider):

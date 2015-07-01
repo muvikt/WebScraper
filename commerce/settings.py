@@ -8,12 +8,12 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
 
-BOT_NAME = 'tutorial'
+BOT_NAME = 'commerce'
 
-SPIDER_MODULES = ['tutorial.spiders']
-NEWSPIDER_MODULE = 'tutorial.spiders'
+SPIDER_MODULES = ['commerce.spiders']
+NEWSPIDER_MODULE = 'commerce.spiders'
 DOWNLOAD_DELAY= .5
-ITEM_PIPELINES = ['tutorial.pipelines.JsonWithEncodingPipeline']
+ITEM_PIPELINES = ['commerce.pipelines.JsonWithEncodingPipeline']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+#USER_AGENT = 'commerce (+http://www.yourdomain.com)'
