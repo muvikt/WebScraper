@@ -8,7 +8,14 @@
 import scrapy
 
 
-class CommerceItem(scrapy.Item):
+class AliexpressItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+      title=scrapy.Field()
+      category=scrapy.Field()
+      itemVariation=scrapy.Field()
+      seller=scrapy.Field()
+      itemSpecifics=scrapy.Field()
+      description=scrapy.Field()
+      url=scrapy.Field()
+   
