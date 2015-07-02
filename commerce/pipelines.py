@@ -6,13 +6,23 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
 import codecs
+class ItemsSpecPipeline(object):
+  
+ def process_item(self, item, spider):
+   if item['itemSpecifics']:
+    line=item['itemSpecifics']
+    print 'LIST', line
 
 class JsonWithEncodingPipeline(object):
 
     def __init__(self):
-        self.file = codecs.open('scraped_data_utf8.json', 'w', encoding='utf-8')
+       self.file = codecs.open('scraped_data_utf8.json', 'w', encoding='utf-8')
+        
+        #self.file = codecs.open('scraped_data_utf8.json', 'w')
 
     def process_item(self, item, spider):
+	#line = json.dumps(dict(item), ensure_ascii=True) + "\n"
+	#line = json.dumps({k: str(v) for k, v in self.__dict__.items()}, ensure_ascii=True)+ "\n"
         line = json.dumps(dict(item), ensure_ascii=False) + "\n"
         self.file.write(line)
         return item
