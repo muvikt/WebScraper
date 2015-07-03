@@ -13,7 +13,9 @@ BOT_NAME = 'commerce'
 SPIDER_MODULES = ['commerce.spiders']
 NEWSPIDER_MODULE = 'commerce.spiders'
 DOWNLOAD_DELAY= .5
-ITEM_PIPELINES = {'commerce.pipelines.JsonWithEncodingPipeline'}
+#DEPTH_LIMIT=2
+ITEM_PIPELINES = {'commerce.pipelines.JsonWithEncodingPipeline',
+		  'commerce.pipelines.ItemExistingPipeline'}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'commerce (+http://www.yourdomain.com)'

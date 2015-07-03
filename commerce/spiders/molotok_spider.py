@@ -10,8 +10,8 @@ from scrapy import Request
 
 
 class ozonSpider(CrawlSpider):
-	name = "ozon"
-	allowed_domains = ["ozon.ru"]
+	name = "molotok"
+	allowed_domains = ["molotok.ru"]
 	start_urls = [
 		"http://www.ozon.ru/catalog/1133731/"]
 

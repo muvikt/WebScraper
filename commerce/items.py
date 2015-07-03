@@ -18,4 +18,5 @@ class AliexpressItem(scrapy.Item):
       itemSpecifics=scrapy.Field()
       description=scrapy.Field()
       url=scrapy.Field()
+      id=scrapy.Field()
    
