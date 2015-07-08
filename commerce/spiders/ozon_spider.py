@@ -12,12 +12,38 @@ from scrapy import Request
 class ozonSpider(CrawlSpider):
 	name = "ozon"
 	allowed_domains = ["ozon.ru"]
+	Request.meta = {'dont_redirect': True,
+		    'handle_httpstatus_list': [302, 301]}
 	start_urls = [
-		"http://www.ozon.ru/catalog/1133731/"]
+		"http://www.ozon.ru/context/div_book/"]
 
-	rules = [
-	   # Extract links matching 'item.php' and parse them with the spider's method parse_item
-	   Rule(SgmlLinkExtractor(allow='http://www.ozon.ru/context/detail/id/'),follow=True, callback='parse_item')]
+	#rules = [
+	    ## Extract links matching 'item.php' and parse them with the spider's method parse_item
+	    #Rule(SgmlLinkExtractor(allow='http://www.ozon.ru/context/detail/id/'), follow=True, callback='parse_item')]
+	
+	def parse(self, response):
+	    #'''Parse main page and extract categories links.'''
+	      #print 'YES'
+	      hxs = HtmlXPathSelector(response)
+	      urls = hxs.select(".//*[@class='eLeftMainMenu_ElementsBlock']/a[@class='eLeftMainMenu_Link '/href").extract()
+	      for url in urls:
+		  url='http://www.ozon.ru'+url
+		  url = urlparse.urljoin(response.url, url)
+		  self.log('Found category url: %s' % url)
+		  yield Request(url,callback = self.parse_item)
+	  
+	def parse_categorie(self,response):
+	  #rules = [
+	    ## Extract links matching 'item.php' and parse them with the spider's method parse_item
+	    #Rule(SgmlLinkExtractor(allow='http://www.ozon.ru/context/detail/id/'), follow=True, callback='parse_item')]
+	    
+	    hxs = HtmlXPathSelector(response)
+	    links = hxs.select("//*[@class='bOneTile inline jsUpdateLink ']/a/@href").extract()
+	    for link in links:
+		link='http://www.ozon.ru'+link
+		itemLink = urlparse.urljoin(response.url, link)
+		#self.log('Found item link: %s' % itemLink, log.DEBUG)
+		yield Request(itemLink, callback = self.parse_item)
 
 
 	def parse_item(self, response):
