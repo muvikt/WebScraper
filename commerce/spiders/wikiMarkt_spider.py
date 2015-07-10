@@ -10,7 +10,7 @@ from scrapy import Request
 
 
 class ozonSpider(CrawlSpider):
-	name = "ozon"
+	name = "wikimarkt"
 	allowed_domains = ["ozon.ru"]
 	#handle_httpstatus_list = [302,301]
 	#Request.meta = {'dont_redirect': True,
@@ -44,7 +44,7 @@ class ozonSpider(CrawlSpider):
 	      urls = response.xpath('.//*[@id="TDpageLeft"]/div[1]/div/div/a[@class="eLeftMainMenu_Link "]/@href').extract()
 	      for url in urls:
 		  url_orig=url
-		  nbMaxPages=7
+		  nbMaxPages=15
 		  for i in range(0,nbMaxPages):
 		    url=url.split("?")[0]
 		    url='http://www.ozon.ru'+url_orig+"?localredirect=no&page=%i" %i

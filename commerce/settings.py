@@ -17,7 +17,7 @@ DOWNLOAD_DELAY= .5
 ITEM_PIPELINES = {'commerce.pipelines.JsonWithEncodingPipeline',
 		  'commerce.pipelines.ItemExistingPipeline'}
 #REDIRECT_ENABLED=False
-#HTTPCACHE_IGNORE_HTTP_CODES = [301,302]
+#HTTPCACHE_IGNORE_HTTP_CODES = [302]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'commerce (+http://www.yourdomain.com)'
